@@ -1,0 +1,32 @@
+
+.navbar-brand img{
+    height: 40px;
+    width: 200px;
+    padding-left: 0;
+}
+
+.navbar-nav ul li{
+    width: 85px;
+}
+
+.navbar-nav ul li a{
+    font-weight: 700;
+    float: right;
+}
+.sign-in-btn-class{
+    width: 69px !important;
+    font-weight: 700 !important;
+    background-color: #00c26a !important;
+    color: white !important;
+}
+
+
+
+ .sign-in-btn-class{
+    width: 90px !important;}
+
+.container-fluid{
+    background: rgb(47, 211, 47);
+    height: 350px;
+}
+
