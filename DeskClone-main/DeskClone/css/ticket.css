@@ -1,0 +1,43 @@
+
+.navbar{
+    padding: 1rem 0 !important;
+}
+#navbar-id{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+/* logo image */
+.navbar-brand img{
+    height: 40px;
+    width: 200px;
+    padding-left: 0;
+}
+
+.navbar-nav li{
+    padding: 0 10px;
+}
+
+.navbar-nav li a{
+    font-weight: 700;
+    float: right;
+    text-align: left;
+}
+
+.navbar-toggler{
+    outline: none !important;
+}
+
+   .nav-tabs>li>a {
+    color: #000000 !important;
+    font-family: sans-serif !important;
+   }
+
+
+   card height width
+   .card{
+       /* height: 50vh !important; */
+       width: 100% !important;
+       min-width: 100% !important;
+   }

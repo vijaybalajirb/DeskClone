@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshdesk login</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+     <script src="https://kit.fontawesome.com/ac0c962c0e.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <section id="login-sec">
+        <div class="container">
+
+            <!-- navbar -->
+            <div id="navbar-id">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="index.html"><img src="pictures/freshdesk_logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Apps</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+
+            <h1 class="text-center">Log in to your Freshdesk account</h1>
+            <div class="row text-center">
+                <div class="col-lg-3">
+
+                </div>
+                <div class="col-lg-6">
+                    <p>Please enter your Freshdesk domain name and API-key we'll help you out!</p>
+
+                    <!-- helpdesk -->
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                        </div>
+                        <input type="text" id="username-id"  class="form-control" placeholder="Helpdesk name"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2 basic-addon3">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">.freshdesk.com</span>
+                        </div>
+                    </div>
+                    <p class="helpdesk-name">Eg: &nbsp; newaccount1611041898747</p>
+
+                    <!-- api key -->
+                    <div class="input-group mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon1">API</span>
+                        </div>
+                        <input type="text" id="api-id" class="form-control" placeholder="Key" aria-label="Username"
+                            aria-describedby="basic-addon1">
+                    </div>
+
+                    <p class="helpdesk-name">Eg:&nbsp; cIxywjV8pJzxh7QLsrS</p>
+
+                    <a class="btn btn-block mt-4" onclick="logMeIn();" id="login-btn" href="#">Sign in</a>
+                </div>
+
+                <div class="col-lg-3">
+
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="scripts/login.js"></script>
+
+</html>

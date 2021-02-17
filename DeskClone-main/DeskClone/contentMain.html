@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freshdesk API</title>
+    <link rel="stylesheet" href="css/ticket.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <section id="api-sec">
+        <div class="container">
+            <!-- navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html"><img src="pictures/freshdesk_logo.png" alt=""></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://freshdesk.com/lp/free-helpdesk-india?tactic_id=3387224&utm_source=Google-AdWords&utm_medium=FD-Search-INDIA-Brand&utm_campaign=FD-Search-INDIA-Brand&utm_term=freshdesk&device=c&gclid=CjwKCAiAo5qABhBdEiwAOtGmbko-svBSpMWdj2Y_PrMy4uXKdELYrvVV9NElS0aq-qhyXUQfvMseABoCINoQAvD_BwE">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" onclick="ListAllTickets();" id="tickets-tab" data-toggle="tab"
+                        href="#tickets" role="tab" aria-controls="tickets" aria-selected="true">Tickets</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" onclick="ListContacts();" id="contacts-tab" data-toggle="tab" href="#contacts"
+                        role="tab" aria-controls="contacts" aria-selected="false">Contacts</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="new-tab" data-toggle="tab" href="#new-create" role="tab"
+                        aria-controls="new-create" aria-selected="false">New</a>
+                </li>
+            </ul>
+
+            <!-- tabs -->
+            <div class="tab-content">
+
+                <!-- tab-pane for tickets tab -->
+                <div class="tab-pane fade show active" id="tickets" role="tabpanel" aria-labelledby="tickets-tab">
+                    <div class="container" style="padding-left: 0 !important;">
+                        <div class="card-deck" id="tickets-deck">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- tab-pane for contact tab -->
+                <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Contact ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th>Update</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contact-list-body">
+                          
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Modal -->
+
+
+                <!-- tab-pane for create ticket and contact tab -->
+                <div class="tab-pane fade" id="new-create" role="tabpanel" aria-labelledby="new-create-tab">
+
+                    <div class="container-fluid" style="padding-left: 0 !important;">
+                        <div class="row">
+                            <!-- success alert -->
+                            <div id="myAlert" style="display: none;" class="alert alert-success alert-dismissible fade show">
+                                <button type="button" class="close" data-hide="alert">&times;</button>
+                                <strong>Success!</strong> A ticket is created successfully! 😋
+                            </div>
+
+                            <div class="card border-dark m-2" style="min-width: 100%;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Create New Ticket</h5>
+
+                                    <div class="form-group">
+                                        <label for="title">Name</label>
+                                        <input type="title" class="form-control" required id="name-ticket">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="title">Ticket Title</label>
+                                        <input type="title" class="form-control" required id="title">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="desc">Ticket Description</label>
+                                        <input type="desc" class="form-control" required id="desc">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <input type="email" class="form-control" required id="email">
+                                    </div>
+                                    <button class="btn btn-success" onclick="createTicket();"
+                                        id="createTicket-btn">Create Ticket</button>
+                                </div>
+                            </div>
+                            <!-- card for creating contact -->
+                            <!-- alert for creation of contact -->
+                            <div id="myAlert-contact" style="display: none;" class="alert alert-warning alert-dismissible fade show">
+                                <button type="button" class="close" data-hide="alert">&times;</button>
+                                <strong>Success!</strong> A Contact is created successfully! 😋
+                            </div>
+
+                            <div class="card border-dark m-2" style="min-width: 100%;">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Create New Contact</h5>
+
+                                    <div class="form-group">
+                                        <label for="text">Full Name:</label>
+                                        <input type="text" class="form-control" required id="full-name">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" required id="contact-email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="contact-number">Contact:</label>
+                                        <input type="tel" class="form-control" required id="contact-number"
+                                            placeholder="8248389071" pattern="[0-9]{10}">
+                                    </div>
+
+                                    <button class="btn btn-warning" id="createContact-btn">Create
+                                        Contact</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Modal  -->
+            <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="text">Full Name:</label>
+                                <input type="text" class="form-control" required id="update-full-name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" required id="update-contact-email">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-number">Contact:</label>
+                                <input type="tel" class="form-control" required id="update-contact-number"
+                                    placeholder="7589400885" pattern="[0-9]">
+                            </div>
+                        </div>
+                      <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" onclick="APIUpdateContact();" id="update-contact-submit"
+                                class="btn btn-primary" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+<script src="scripts/index3.js"></script>
+<script src="scripts/updateTicket.js"></script>
+<script src="scripts/deleteTicket.js"></script>
+<script src="scripts/createTicket.js"></script>
+<script src="scripts/contactList.js"></script>
+<script src="scripts/contactUpdate.js"></script>
+<script src="scripts/contactDelete.js"></script>
+<script src="scripts/contactCreate.js"></script>
+
+</html>
